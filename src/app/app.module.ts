@@ -13,7 +13,7 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { HomeComponent } from './home/home.component';
 import { ProductDetailComponent } from './product-detail/product-detail.component';
 import { ProductService } from './shared/product.service';
-import { FilterPipe } from './pipe/filter.pipe'
+import { FilterPipe } from './pipe/filter.pipe';
 
 
 @NgModule({

@@ -1,6 +1,7 @@
+import { ActivatedRoute } from '@angular/router';
+import { ProductService } from './../shared/product.service';
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute} from '@angular/router';
-import { Product, ProductService, Comment } from '../shared/product.service'
+import { Product, Comment } from '../shared/product.service'
  
 @Component({
   selector: 'app-product-detail',
@@ -9,28 +10,28 @@ import { Product, ProductService, Comment } from '../shared/product.service'
 })
 export class ProductDetailComponent implements OnInit {
 
-  product:Product;
-  comments:Comment[];
-  newRating:number= 5;
-  newComment:string="";
-  isCommentHidden:boolean = true
+  product: Product;
+  comments: Comment[];
+  newRating: number = 5;
+  newComment:string = "";
+  isCommentHidden: boolean = true;
 
   constructor(
-    private routeInfo:ActivatedRoute,
-    private productService:ProductService
-  ) { 
+    private routeInfo: ActivatedRoute,
+    private productService: ProductService
+  ) {
 
   }
 
   ngOnInit() {
-    let productId:number = this.routeInfo.snapshot.params['productId'];
+    let productId : number = this.routeInfo.snapshot.params['productId'];
     this.product = this.productService.getProduct(productId)
     this.comments = this.productService.getCommentForProductId(productId);
   }
 
-  addComment(){
-    if(!this.newComment){
-      alert("请填写评论内容")
+  addComment() {
+    if ( !this.newComment ) {
+      alert( '请填写评论内容' );
       return;
     }
     let comment = new Comment(0, this.product.id, new Date().toISOString(), 'someone', this.newRating, this.newComment)
